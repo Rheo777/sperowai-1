@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaClock } from "react-icons/fa";
 import { Line } from 'react-chartjs-2';
 import {
@@ -22,8 +22,33 @@ ChartJS.register(
   Legend
 );
 
+// Export these values so they can be used in Tablet-performance
+export const useMetrics = () => {
+  const [currentAverage, setCurrentAverage] = useState(10);
+  const [progressPercentage, setProgressPercentage] = useState(65);
+  const [fastestTime, setFastestTime] = useState(5);
+  const [longestTime, setLongestTime] = useState(15);
+
+  useEffect(() => {
+    const updateMetrics = () => {
+      // Replace with your actual calculations
+      setCurrentAverage(Math.floor(Math.random() * 15) + 5);
+      setProgressPercentage(Math.floor(Math.random() * 100));
+      setFastestTime(Math.floor(Math.random() * 5) + 1);
+      setLongestTime(Math.floor(Math.random() * 10) + 15);
+    };
+
+    updateMetrics();
+    const interval = setInterval(updateMetrics, 300000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return { currentAverage, progressPercentage, fastestTime, longestTime };
+};
+
 const Performance = () => {
   const [timeRange, setTimeRange] = useState('today');
+  const { currentAverage, progressPercentage, fastestTime, longestTime } = useMetrics();
 
   const options = {
     responsive: true,

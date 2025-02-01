@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaClock } from "react-icons/fa";
 import { Line } from 'react-chartjs-2';
 import {
@@ -11,6 +11,7 @@ import {
   Tooltip,
   Legend
 } from 'chart.js';
+import { useMetrics } from './Performance';
 
 ChartJS.register(
   CategoryScale,
@@ -24,6 +25,7 @@ ChartJS.register(
 
 const TabletPerformance = () => {
   const [timeRange, setTimeRange] = useState('today');
+  const { currentAverage, progressPercentage, fastestTime, longestTime } = useMetrics();
 
   const options = {
     responsive: true,
