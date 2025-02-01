@@ -30,13 +30,7 @@ const PerformanceMetricCard = ({ onNavigate }) => {
 
         <div className="h-8 w-[1px] bg-gray-200"></div>
 
-        <div className="flex items-center gap-2">
-          <span className="text-sm text-gray-500">Target:</span>
-          <div className="flex items-baseline">
-            <span className="text-2xl font-bold text-gray-800">35</span>
-            <span className="text-sm text-gray-500 ml-1">min</span>
-          </div>
-        </div>
+        
       </div>
     </div>
   );

@@ -17,7 +17,7 @@ const TreatmentTimePage = ({ onNavigate }) => {
             <div className="flex items-center justify-between mb-6">
               <button 
                 onClick={() => onNavigate('dashboard')}
-                className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                className="p-2 hover:bg-gray-100 rounded-full transition-colors sm:hidden"
               >
                 <FaArrowLeft className="text-gray-700 text-xl" />
               </button>

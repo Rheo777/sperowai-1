@@ -67,48 +67,57 @@ const HomePage = ({ fromDashboard }) => {
     return <ProfilePage onNavigate={handleNavigate} />;
   }
 
-  // Main homepage layout with responsive design
   return (
-    <div className={`fixed inset-0 w-full h-full overflow-auto ${isExiting ? 'animate-fadeOut' : ''} ${isEntering ? 'animate-fadeScale' : ''}`}>
-      <div className="min-h-screen bg-[#F7F8F9] pb-20">
-        {/* Conditional Header */}
-        {isTabletOrDesktop ? (
-          <TabletHeader onNavigate={handleNavigate} />
-        ) : (
-          <div className="w-full min-w-[320px] max-w-[440px] mx-auto">
-            <MobileHeader onNavigate={handleNavigate} />
-          </div>
-        )}
-        
-        {/* Main Content */}
-        <div className={`${isTabletOrDesktop ? 'ml-[80px]' : ''}`}>
-          <div className={`${isTabletOrDesktop ? 'max-w-[1200px] px-8' : 'max-w-[440px] px-4'} mx-auto`}>
-            {/* Performance Section */}
-            <div className="w-full mb-8">
-              <Performance />
+    <div className="fixed inset-0 flex flex-col">
+      {/* Scrollable Content Container */}
+      <div className="flex-1 overflow-auto">
+        <div className={`min-h-screen bg-[#F7F8F9] pb-28 ${isExiting ? 'animate-fadeOut' : ''} ${isEntering ? 'animate-fadeScale' : ''}`}>
+          {/* Conditional Header */}
+          {isTabletOrDesktop ? (
+            <TabletHeader onNavigate={handleNavigate} />
+          ) : (
+            <div className="w-full min-w-[320px] max-w-[440px] mx-auto">
+              <MobileHeader onNavigate={handleNavigate} />
             </div>
-
-            {/* Replace ConsultationCard with Search */}
-            <div className={`w-full ${isTabletOrDesktop ? 'grid grid-cols-2 gap-8' : 'flex justify-center -ml-2'}`}>
-              <Search />
-              {isTabletOrDesktop && (
-                <div className="flex items-center justify-center">
-                  <AiButton onClick={handleAIClick} />
+          )}
+          
+          {/* Main Content */}
+          <div className={`${isTabletOrDesktop ? 'ml-[80px]' : ''}`}>
+            <div className={`${isTabletOrDesktop ? 'max-w-[1200px] px-8' : 'max-w-[440px] px-4'} mx-auto`}>
+              {/* Search and AI Button Section */}
+              <div className={`
+                w-full 
+                ${isTabletOrDesktop 
+                  ? 'grid grid-cols-2 gap-8' 
+                  : 'flex flex-col items-center'
+                } 
+                mb-4
+              `}>
+                <div className="w-full mt-4">
+                  <Search />
                 </div>
-              )}
+                {isTabletOrDesktop && (
+                  <div className="flex items-center justify-center">
+                    <AiButton onClick={handleAIClick} />
+                  </div>
+                )}
+              </div>
+
+              {/* Performance Section */}
+              <div className="w-full mb-4">
+                <Performance />
+              </div>
             </div>
           </div>
         </div>
-
-        {/* Mobile AI Button */}
-        {!isTabletOrDesktop && (
-          <div className="fixed bottom-0 left-0 right-0 z-[9999] flex justify-center pb-8">
-            <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[9999] w-[130px]">
-              <AiButton onClick={handleAIClick} />
-            </div>
-          </div>
-        )}
       </div>
+
+      {/* Fixed AI Button Container - Outside scroll container */}
+      {!isTabletOrDesktop && (
+        <div className="fixed bottom-8 left-1/2 -translate-x-1/2 w-[130px] z-[9999]">
+          <AiButton onClick={handleAIClick} />
+        </div>
+      )}
     </div>
   );
 };

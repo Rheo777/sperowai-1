@@ -107,7 +107,7 @@ const PerformanceGraph = () => {
 
   return (
     <div className="flex flex-col items-center w-full">
-      <div className="bg-white rounded-2xl p-6 w-full md:w-[650px] lg:w-[850px]">
+      <div className="bg-white rounded-2xl p-6 w-full md:w-[440px] xl:w-[650px] 2xl:w-[850px]">
         <div className="flex items-center justify-between mb-6">
           <h3 className="text-gray-800 font-semibold">Patient Flow</h3>
           
@@ -156,7 +156,7 @@ const PerformanceGraph = () => {
           </div>
 
           {/* Mobile view dropdown */}
-          <select 
+          <select
             className="md:hidden px-4 py-1.5 rounded-full text-sm font-medium bg-white border border-gray-200"
             value={timeRange}
             onChange={(e) => setTimeRange(e.target.value)}

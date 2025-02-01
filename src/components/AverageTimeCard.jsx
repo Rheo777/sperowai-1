@@ -4,7 +4,7 @@ const AverageTimeCard = ({ onClick, className = '' }) => {
   return (
     <div 
       onClick={onClick}
-      className={`bg-white rounded-[20px] p-6 hover:shadow-md transition-all duration-300 relative cursor-pointer ${className}`}
+      className={`bg-white rounded-[20px] p-6  hover:shadow-md transition-all duration-300 relative cursor-pointer ${className}`}
     >
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-4">
@@ -29,13 +29,7 @@ const AverageTimeCard = ({ onClick, className = '' }) => {
           </div>
         </div>
 
-        <div className="space-y-2">
-          <span className="text-sm text-gray-500">Target Time</span>
-          <div className="flex items-baseline">
-            <span className="text-3xl font-bold text-gray-800">15</span>
-            <span className="text-sm text-gray-500 ml-1">min</span>
-          </div>
-        </div>
+        
       </div>
     </div>
   );

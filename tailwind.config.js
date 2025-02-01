@@ -37,14 +37,19 @@ module.exports = {
             opacity: '0',
             transform: 'scale(1.05)'
           }
+        },
+        blink: {
+          '0%, 100%': { opacity: 1 },
+          '50%': { opacity: 0 },
         }
       },
       animation: {
         slideUp: 'slideUp 0.3s ease-out',
         slideDown: 'slideDown 0.3s ease-out',
         fadeIn: 'fadeIn 0.2s ease-out',
-        fadeScale: 'fadeScale 0.3s ease-out forwards',
-        fadeOut: 'fadeOut 0.3s ease-out forwards'
+        fadeScale: 'fadeScale 0.2s ease-out',
+        fadeOut: 'fadeOut 0.3s ease-out forwards',
+        blink: 'blink 1s ease-in-out infinite',
       },
       transitionProperty: {
         'all': 'all',

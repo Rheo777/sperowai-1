@@ -7,31 +7,31 @@ const PerformanceCard = ({ onNavigate, className = '' }) => {
       onClick={() => onNavigate('performance')}
       className={`bg-white rounded-[20px] p-6 hover:shadow-md transition-all duration-300 relative cursor-pointer ${className}`}
     >
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex items-center justify-between mb-8 ">
         <div className="flex items-center gap-4">
           <div className="w-12 h-12 bg-[#E8F5E9] rounded-full flex items-center justify-center">
             <FaChartLine className="text-green-500 text-xl" />
           </div>
           <div>
-            <h2 className="text-xl font-semibold text-gray-800">Performance Growth</h2>
-            <p className="text-sm text-gray-500">Monthly target</p>
+            <h2 className="text-xl font-semibold text-gray-800">Efficiency Metrics</h2>
+            
           </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-8 mt-6">
+      <div className="grid grid-cols-2 gap-8 mt-4">
         <div className="space-y-2">
-          <span className="text-sm text-gray-500">Current Progress</span>
+          <span className="text-sm text-gray-500">Patient Growth</span>
           <div className="flex items-baseline">
-            <span className="text-3xl font-bold text-gray-800">75</span>
-            <span className="text-sm text-gray-500 ml-1">%</span>
+            <span className="text-3xl font-bold text-gray-800">+20</span>
+            <span className="text-sm text-gray-500 ml-1">patients</span>
           </div>
         </div>
 
         <div className="space-y-2">
-          <span className="text-sm text-gray-500">Monthly Target</span>
+          <span className="text-sm text-gray-500">From Last Month</span>
           <div className="flex items-baseline">
-            <span className="text-3xl font-bold text-gray-800">85</span>
+            <span className="text-3xl font-bold text-green-600">+12.5</span>
             <span className="text-sm text-gray-500 ml-1">%</span>
           </div>
         </div>

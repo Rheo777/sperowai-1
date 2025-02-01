@@ -59,7 +59,7 @@ const UploadCard = ({ onFileUpload, onUploadComplete }) => {
       <div className="w-[390px] h-[359px] absolute bg-white rounded-tl-[50px] rounded-tr-[50px]">
         {/* Description */}
         <div className="h-[50px] p-2.5 left-[34px] top-[25px] absolute rounded-[30px] border border-[#3973eb]/20 justify-center items-center gap-2.5 inline-flex">
-          <div className="text-center text-[#3973eb] text-sm font-semibold font-['Raleway']">
+          <div className="text-center text-[#3973eb] text-sm font-semibold ">
             Upload Your Medical Files for Quick Diagnosis
           </div>
         </div>

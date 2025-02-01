@@ -60,10 +60,7 @@ const CloseCase = () => {
         <div className="w-full bg-[#3973EB] rounded-t-[15px] py-8 px-4">
           <div className="max-w-md mx-auto text-center text-white">
             <h3 className="text-xl font-medium mb-2">Fantastic Work, Doctor!</h3>
-            <p className="text-sm opacity-90 mb-6">
-              The report is ready, analyzed in just 08 minutes.<br />
-              Keep up the amazing work!
-            </p>
+           
             <button 
               onClick={handleFinish}
               className="w-48 py-3 bg-white text-[#3973EB] font-medium rounded-xl hover:bg-opacity-90 transition-colors"

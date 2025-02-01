@@ -6,9 +6,9 @@ import { profileData } from '../data/profileData';
 const MobileHeader = ({ onNavigate }) => {
   return (
     <header className="w-full max-w-[440px] min-w-[320px] mx-auto">
-      <div className="w-full h-44 bg-[#3973eb] rounded-bl-[15px] rounded-br-[15px] shadow-[0px_2px_17.8px_rgba(0,0,0,0.25)] border relative">
+      <div className="w-full h-44 bg-[#3973eb] rounded-br-[15px] rounded-bl-[15px] shadow-[0px_2px_17.8px_rgba(0,0,0,0.25)] border relative">
         {/* Content Section */}
-        <div className="w-[90%] h-[61px] absolute top-[20px] left-[5%] flex items-center">
+        <div className="w-full h-[61px] px-4 absolute top-[20px] flex items-center">
           {/* Profile Picture */}
           <img
             src={Profile}

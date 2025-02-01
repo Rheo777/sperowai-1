@@ -35,14 +35,14 @@ const PerformanceGrowth = ({ onNavigate }) => {
         {/* Back Button */}
         <button 
           onClick={handleBack}
-          className="p-2 hover:bg-gray-100 rounded-full transition-colors mb-4"
+          className="p-2 hover:bg-gray-100 rounded-full transition-colors mb-4 sm:hidden"
         >
           <IoArrowBack className="text-gray-600 text-xl" />
         </button>
 
         {/* Growth Card */}
         <div className="flex justify-center w-full">
-          <div className="bg-[#F1F2E8] p-6 rounded-2xl shadow-sm mb-6 w-full md:w-[600px] lg:w-[800px]">
+          <div className="bg-[#F1F2E8] p-6 rounded-2xl shadow-sm mb-6 w-full">
             <div className="flex items-center justify-between">
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
@@ -87,9 +87,11 @@ const PerformanceGrowth = ({ onNavigate }) => {
           </div>
         </div>
 
-        {/* Weekly Performance Graph */}
-        <div className="bg-white rounded-2xl p-6 shadow-sm mb-6">
-          <PerformanceGraph />
+        {/* Performance Graph */}
+        <div className="flex justify-center w-full">
+          <div className="w-full">
+            <PerformanceGraph />
+          </div>
         </div>
 
         {/* Recent Consultations */}

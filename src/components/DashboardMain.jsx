@@ -54,7 +54,7 @@ const DashboardMain = ({ onNavigate }) => {
       <DashboardHeader onNavigate={handleNavigate} />
       <div className="px-4 w-full max-w-[440px] mx-auto mt-6">
         {/* Stats Section */}
-        <div className="grid grid-cols-1 gap-4 mb-3">
+        <div className="grid grid-cols-1 gap-4 mb-4">
           {stats.map((stat, index) => (
             <div key={index} className="bg-white rounded-[20px] p-4 hover:shadow-md transition-all duration-300">
               <div className="flex items-center justify-between">
@@ -64,9 +64,9 @@ const DashboardMain = ({ onNavigate }) => {
                   </div>
                   <div>
                     <p className="text-sm text-gray-500">{stat.title}</p>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-4">
                       <h3 className="text-xl font-bold text-gray-800">{stat.value}</h3>
-                      <span className={`text-xs px-2 py-1 rounded-full ${
+                      <span className={`text-xs px-2 py-2 rounded-full ${
                         stat.trend.startsWith('+') ? 'bg-green-50 text-green-600' : 'bg-red-50 text-red-600'
                       }`}>
                         {stat.trend}
@@ -79,9 +79,11 @@ const DashboardMain = ({ onNavigate }) => {
           ))}
         </div>
 
-        {/* Cards */}
-        <PerformanceCard onNavigate={handleNavigate} />
-        <AverageTimeCard onClick={() => handleNavigate('treatment-time')} />
+        {/* Cards with spacing */}
+        <div className="space-y-4">
+          <PerformanceCard onNavigate={handleNavigate} />
+          <AverageTimeCard onClick={() => handleNavigate('treatment-time')} />
+        </div>
       </div>
     </div>
   );
