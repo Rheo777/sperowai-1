@@ -5,7 +5,9 @@ import HomePage from './Homepage';
 import Landpage from './Landpage';
 import SignupPage from './signuppage';
 import TabletHomepage from './Tablet-homepage';
-import { profileData } from '../data/profileData';
+import { updateProfileData } from '../data/profileData';
+import { setToken } from '../utils/auth';
+import API_ENDPOINTS from '../config/api';
 
 const SperowIcon = () => (
   <svg 
@@ -26,9 +28,10 @@ const LoginPage = () => {
   const [showHome, setShowHome] = useState(false);
   const [showLanding, setShowLanding] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const isTabletOrDesktop = window.matchMedia('(min-width: 780px)').matches;
 
   if (showHome) {
@@ -43,13 +46,44 @@ const LoginPage = () => {
     return <SignupPage />;
   }
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // Check if credentials match
-    if (email === profileData.email && password === profileData.password) {
+    setIsLoading(true);
+    setError('');
+
+    try {
+      const response = await fetch(API_ENDPOINTS.login, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+      const data = await response.json();
+      console.log('Login response:', data); // Debug log
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Login failed');
+      }
+
+      // Store JWT token
+      setToken(data.token);
+      
+      // Update user profile data with only the data we receive
+      updateProfileData({
+        username: username, // We know the username from input
+        // Only add other fields if they exist in the response
+        ...(data.name && { name: data.name }),
+        ...(data.role && { role: data.role })
+      });
+
       setShowHome(true);
-    } else {
-      setError('Invalid email or password');
+    } catch (err) {
+      console.error('Login error:', err); // Debug log
+      setError(err.message || 'Failed to login. Please try again.');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -89,19 +123,19 @@ const LoginPage = () => {
             
             <form className="space-y-6" onSubmit={handleLogin}>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                  Email
+                <label htmlFor="username" className="block text-sm font-medium text-gray-700">
+                  Username
                 </label>
                 <div className="mt-1">
                   <input
-                    id="email"
-                    name="email"
-                    type="email"
+                    id="username"
+                    name="username"
+                    type="text"
                     required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
                     className="appearance-none block w-full px-3 py-2.5 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                    placeholder="Enter your email"
+                    placeholder="Enter your username"
                   />
                 </div>
               </div>
@@ -145,9 +179,10 @@ const LoginPage = () => {
               <div>
                 <button
                   type="submit"
+                  disabled={isLoading}
                   className="w-full flex justify-center py-2.5 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-[#3973EB] hover:bg-[#3973EB]/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200"
                 >
-                  Sign in
+                  {isLoading ? 'Signing in...' : 'Sign in'}
                 </button>
               </div>
             </form>
